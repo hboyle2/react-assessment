@@ -6,11 +6,12 @@ class App extends Component {
       this.state = { 
         todos: [], 
         text: '' ,
-        completed: false
+        id: 0
+        // underline: ''
       };
 
       this.removeTodo = this.removeTodo.bind(this);
-      this.completeTask = this.completeTask.bind(this);
+    //   this.underline = this.underline.bind(this);
   }
 
   addTodo(text) {
@@ -18,11 +19,14 @@ class App extends Component {
     if(text.length > 0){
       list.push(text)
     } else( alert('please input something'))
-   
+    var id = this.state.id
     this.setState({
       todos: list,
-      text:''
+      text:'',
+      id: id++
+    //   underline: false
     })
+    
   }
 
   removeTodo(name, i){
@@ -33,18 +37,18 @@ class App extends Component {
       });
   }
 
-  completeTask(){
-    console.log('its working')
-    let bob = this.state.text.strike();
-    this.setState({
-      text: '', 
-      completed: true
-    })
-  }
+
 
   updateValue(e) {
       this.setState({ text: e.target.value})
   }
+
+//   underline(){
+//     console.log(this.state.underline)
+//     this.setState({
+//       underline: true
+//     })
+//   } 
 
   render() {
       return(
@@ -58,7 +62,7 @@ class App extends Component {
                   <button onClick = {() => this.addTodo(this.state.text)} >Add Todo</button>
              
               <TodoList todos={this.state.todos} removeTodo={this.removeTodo}
-              completeTask={this.completeTask}/>
+              underline={this.underline}/>
           </div>
       );
   }

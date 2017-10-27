@@ -5,29 +5,35 @@ import './todo.css'
       super(props)
 
       this.state={
-        underline: true
+        underline: false
       }
     }
     
     removeItem(item, i) {
       this.props.removeTodo(item, i);
+      this.setState({
+        underline:false
+      })
   }
 
-  underline(){
-    this.setState({
-      underline: false
-    })
-  }
+  // underline(){
+  //   console.log('it works')
+  //   this.setState({
+  //     underline: true
+  //   })
+  //   // this.props.underline()
+  // }
 
   
 
     render() {
+     console.log(this.state.underline)
       return (
         <div>
           <ul>
                   { this.props.todos.map((todo,i) => {
-                      return <div  key={i}>{ todo }<div onClick={()=>this.props.completeTask()}>completed</div><button onClick={() => { this.removeItem(todo, i)}}>X</button></div>
-                    
+                      return <div className={this.state.underline ? 'underline' : 'noUnderline '} key={i}>{ todo }<div onClick={()=>{this.setState({underline:true})}}>completed</div><button onClick={() => { this.removeItem(todo, i)}}>X</button></div>
+                   
                   })}
                   
               </ul>

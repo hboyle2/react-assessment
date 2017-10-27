@@ -1,7 +1,7 @@
 .underline{
-  text-decoration: strikethrough;
+  text-decoration: line-through;
 }
 
 .noUnderline{
-  text-decoration: none;
+  background: pink;
 }
